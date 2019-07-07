@@ -1,10 +1,11 @@
 {
   "how-much-per-kilogram": "How much per kilogram?",
   "weight": "Weight/volume",
-  "weight-placeholder": "Product weight or volume, e.g., 0.45",
+  "weight-placeholder": "E.g., 0.45",
   "price": "Price",
   "price-placeholder": "Product price",
   "install": "Install",
-  "calculate": "Calculate",
-  "price-per-one": "Price per kilogram/liter (rounded)"
+  "price-per-one": "Price per kilogram/liter",
+  "clear": "Clear",
+  "notice-rounded": "The price is rounded to the whole number"
 }

@@ -1,10 +1,11 @@
 {
     "how-much-per-kilogram": "Сколько за килограмм?",
     "weight": "Вес/объём",
-    "weight-placeholder": "Вес или объём продукта, например, 0.45",
+    "weight-placeholder": "Например, 0.45",
     "price": "Стоимость",
     "price-placeholder": "Стоимость продукта",
     "install": "Установить",
-    "calculate": "Рассчитать",
-    "price-per-one": "Цена за килограмм/литр (округлено)"
+    "price-per-one": "Цена за килограмм/литр",
+    "clear": "Очистить",
+    "notice-rounded": "Цена округлена до целого числа"
   }

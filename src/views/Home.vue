@@ -7,8 +7,14 @@
           :pricePerOne="pricePerOne"
           :calculatePricePerOne="calculatePricePerOne"
         />
-        <div v-if="!isInstalled" class="install-button-container">
+        <div v-if="!isInstalled" class="bottom-container">
           <button class="button" type="button" @click="showInstallPrompt">{{ $t('install') }}</button>
+          <div
+            v-show="pricePerOne && Number.isFinite(pricePerOne)"
+            class="notice"
+          >
+            <sup>*</sup>{{ $t('notice-rounded') }}
+          </div>
         </div>
       </div>
     </div>
@@ -44,6 +50,7 @@
     },
   })
   export default class Home extends Vue {
+
     isInstalled: boolean = true;
 
     mounted() {
@@ -94,11 +101,18 @@
     flex-direction: column;
   }
 
-  .install-button-container {
+  .bottom-container {
     flex-grow: 1;
     display: flex;
-    justify-content: center;
-    align-items: flex-end;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .notice {
+    margin-top: 10px;
+    align-self: flex-start;
+    font-size: 0.75rem;
   }
 </style>
 

@@ -1,47 +1,64 @@
 <template>
   <div class="calculator">
     <div class="field">
-      <label class="label">{{ $t('weight') }}</label>
+      <label class="label is-medium">{{ $t('weight') }}</label>
       <div class="control">
-        <input v-model="weight" class="input" type="number" :placeholder="$t('weight-placeholder')">
+        <input v-model="weight" class="input is-medium" type="number" :placeholder="$t('weight-placeholder')">
       </div>
     </div>
     <div class="field">
-      <label class="label">{{ $t('price') }}</label>
+      <label class="label is-medium">{{ $t('price') }}</label>
       <div class="control">
-        <input v-model="price" class="input" type="number" :placeholder="$t('price-placeholder')">
+        <input v-model="price" class="input is-medium" type="number" :placeholder="$t('price-placeholder')">
       </div>
     </div>
-    <div class="field">
-      <p class="control has-text-centered">
-        <button
-          @click="calculate"
-          class="button is-primary"
-          type="button"
-        >
-          {{ $t('calculate') }}
-        </button>
-      </p>
+    <div v-show="isPricePerOneValid" class="price-per-one">
+      <div class="price-per-one-text">
+        <span class="price-per-one-title">{{ $t('price-per-one') }}<sup>*</sup></span>
+        <br>
+        <span class="price-per-one-value">{{ pricePerOne }}</span>
+      </div>
+      <button
+        type="button"
+        class="button is-primary"
+        @click="clear"
+      >
+        {{ $t('clear') }}
+      </button>
     </div>
-    <p v-show="pricePerOne" class="has-text-centered">
-      {{ $t('price-per-one') }}: <b>{{ pricePerOne }}</b>
-    </p>
   </div>
 </template>
 
 <script lang="ts">
-  import { Component, Prop, Vue } from 'vue-property-decorator';
+  import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 
-  @Component
+  @Component({
+    props: ['pricePerOne', 'calculatePricePerOne'],
+  })
   export default class Calculator extends Vue {
-    @Prop() private pricePerOne: null | string;
+    @Prop() private pricePerOne: null | number;
     @Prop({ default: () => {} }) private calculatePricePerOne: ({ weight, price }: { weight: null | number; price: null | number; } ) => void;
 
     weight: null | number = null;
     price: null | number = null;
 
-    calculate() {
+    get isPricePerOneValid() {
+      return this.pricePerOne && Number.isFinite(this.pricePerOne)
+    }
+
+    @Watch('weight')
+    onWeightChanged(value: null | number) {
       this.calculatePricePerOne({ weight: this.weight, price: this.price });
+    }
+
+    @Watch('price')
+    onPriceChanged(value: null | number) {
+      this.calculatePricePerOne({ weight: this.weight, price: this.price });
+    }
+
+    clear() {
+      this.weight = null;
+      this.price = null;
     }
   }
 </script>
@@ -53,5 +70,23 @@
 
   .calculator {
     min-width: 280px;
+  }
+
+  .price-per-one {
+    margin-top: 40px;
+    text-align: center;
+  }
+
+  .price-per-one-text {
+    margin-bottom: 10px;
+  }
+
+  .price-per-one-title {
+    font-size: 1rem;
+  }
+
+  .price-per-one-value {
+    font-weight: 700;
+    font-size: 1.25rem;
   }
 </style>
