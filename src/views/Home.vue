@@ -7,7 +7,7 @@
           :pricePerOne="pricePerOne"
           :calculatePricePerOne="calculatePricePerOne"
         />
-        <div class="install-button-container">
+        <div v-if="!isInstalled" class="install-button-container">
           <button class="button" type="button" @click="showInstallPrompt">Install</button>
         </div>
       </div>
@@ -44,6 +44,14 @@
     },
   })
   export default class Home extends Vue {
+    isInstalled: boolean = true;
+
+    mounted() {
+      if (!window.matchMedia('(display-mode: standalone)').matches) {
+        this.isInstalled = false;
+      }
+    }
+
     showInstallPrompt() {
       if (!deferredPrompt) {
         return;

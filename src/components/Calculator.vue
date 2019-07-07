@@ -3,7 +3,7 @@
     <div class="field">
       <label class="label">Weight/volume</label>
       <div class="control">
-        <input v-model="weight" class="input" type="number" placeholder="Product weight or volume, e.g, 0.45">
+        <input v-model="weight" class="input" type="number" placeholder="Product weight or volume, e.g., 0.45">
       </div>
     </div>
     <div class="field">
