@@ -17,7 +17,8 @@ export default new Vuex.Store({
   actions: {
     calculatePricePerOne({ commit }, { weight, price }: { weight: null | number; price: null | number; }) {
       if (!weight || !price) {
-        return
+        commit('setPricePerOne', null);
+        return;
       }
 
       const pricePerOne = Math.round(price / weight);
