@@ -7,8 +7,15 @@
           :pricePerOne="pricePerOne"
           :calculatePricePerOne="calculatePricePerOne"
         />
-        <div v-if="!isInstalled" class="bottom-container">
-          <button class="button" type="button" @click="showInstallPrompt">{{ $t('install') }}</button>
+        <div class="bottom-container">
+          <button
+            v-if="!isInstalled"
+            class="button"
+            type="button"
+            @click="showInstallPrompt"
+          >
+            {{ $t('install') }}
+          </button>
           <div
             v-show="pricePerOne && Number.isFinite(pricePerOne)"
             class="notice"
@@ -50,7 +57,6 @@
     },
   })
   export default class Home extends Vue {
-
     isInstalled: boolean = true;
 
     mounted() {
