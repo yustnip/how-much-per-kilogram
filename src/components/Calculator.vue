@@ -1,15 +1,15 @@
 <template>
   <div class="calculator">
     <div class="field">
-      <label class="label">Weight/volume</label>
+      <label class="label">{{ $t('weight') }}</label>
       <div class="control">
-        <input v-model="weight" class="input" type="number" placeholder="Product weight or volume, e.g., 0.45">
+        <input v-model="weight" class="input" type="number" :placeholder="$t('weight-placeholder')">
       </div>
     </div>
     <div class="field">
-      <label class="label">Price</label>
+      <label class="label">{{ $t('price') }}</label>
       <div class="control">
-        <input v-model="price" class="input" type="number" placeholder="Product price">
+        <input v-model="price" class="input" type="number" :placeholder="$t('price-placeholder')">
       </div>
     </div>
     <div class="field">
@@ -19,12 +19,12 @@
           class="button is-primary"
           type="button"
         >
-          Calculate
+          {{ $t('calculate') }}
         </button>
       </p>
     </div>
     <p v-show="pricePerOne" class="has-text-centered">
-      Price per kilogram/liter (rounded): <b>{{ pricePerOne }}</b>
+      {{ $t('price-per-one') }}: <b>{{ pricePerOne }}</b>
     </p>
   </div>
 </template>

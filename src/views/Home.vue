@@ -2,13 +2,13 @@
   <div class="container is-fluid">
     <div class="columns is-centered">
       <div class="main-column column is-narrow">
-        <div class="title has-text-centered">How much per kilogram?</div>
+        <div class="title has-text-centered">{{ $t('how-much-per-kilogram') }}</div>
         <Calculator
           :pricePerOne="pricePerOne"
           :calculatePricePerOne="calculatePricePerOne"
         />
         <div v-if="!isInstalled" class="install-button-container">
-          <button class="button" type="button" @click="showInstallPrompt">Install</button>
+          <button class="button" type="button" @click="showInstallPrompt">{{ $t('install') }}</button>
         </div>
       </div>
     </div>
