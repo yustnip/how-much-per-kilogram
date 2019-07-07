@@ -20,7 +20,7 @@
       </div>
       <button
         type="button"
-        class="button is-primary"
+        class="button is-primary is-medium"
         @click="clear"
       >
         {{ $t('clear') }}
@@ -73,7 +73,7 @@
   }
 
   .price-per-one {
-    margin-top: 40px;
+    margin-top: 20px;
     text-align: center;
   }
 
