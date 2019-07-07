@@ -16,7 +16,7 @@
       <p class="control has-text-centered">
         <button
           @click="calculate"
-          class="button is-dark"
+          class="button is-primary"
           type="button"
         >
           Calculate
