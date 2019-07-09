@@ -8,5 +8,7 @@
   "price-per-one": "Price per kilogram/liter",
   "clear": "Clear",
   "settings": "Settings",
-  "round-setting": "Round to the whole number"
+  "round-setting": "Round to the whole number",
+  "calculator": "Calculator",
+  "release-notes": "Version: 0.1.0\n- UI improvements\n- Added result round setting\n\n Reload the app to get the update"
 }
