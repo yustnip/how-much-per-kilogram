@@ -2,7 +2,6 @@
   <div class="container is-fluid">
     <div class="columns is-centered">
       <div class="main-column column is-narrow">
-        <div class="title has-text-centered">{{ $t('how-much-per-kilogram') }}</div>
         <Calculator
           :pricePerOne="pricePerOne"
           :calculatePricePerOne="calculatePricePerOne"
