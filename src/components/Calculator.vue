@@ -12,7 +12,7 @@
         <input v-model="price" class="input is-medium" type="number" :placeholder="$t('price-placeholder')">
       </div>
     </div>
-    <div v-show="isPricePerOneValid" class="price-per-one">
+    <div v-show="pricePerOne" class="price-per-one">
       <div class="price-per-one-text">
         <span class="price-per-one-title">{{ $t('price-per-one') }}<sup>*</sup></span>
         <br>
@@ -21,7 +21,7 @@
       <button
         type="button"
         class="button is-primary is-medium"
-        @click="clear"
+        @click="resetProduct"
       >
         {{ $t('clear') }}
       </button>
@@ -32,33 +32,26 @@
 <script lang="ts">
   import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 
-  @Component({
-    props: ['pricePerOne', 'calculatePricePerOne'],
-  })
+  @Component
   export default class Calculator extends Vue {
-    @Prop() private pricePerOne: null | number;
-    @Prop({ default: () => {} }) private calculatePricePerOne: ({ weight, price }: { weight: null | number; price: null | number; } ) => void;
+    @Prop() private product: { weight: number | null, price: number | null };
+    @Prop() private setProductWeight: (value: number | null ) => void;
+    @Prop() private setProductPrice: (value: number | null) => void;
+    @Prop() private resetProduct: () => void;
+    @Prop() private pricePerOne: number | null;
 
-    weight: null | number = null;
-    price: null | number = null;
-
-    get isPricePerOneValid() {
-      return this.pricePerOne && Number.isFinite(this.pricePerOne)
+    get weight() {
+      return this.product.weight ? this.product.weight : null;
+    }
+    set weight(value) {
+      this.setProductWeight(value);
     }
 
-    @Watch('weight')
-    onWeightChanged(value: null | number) {
-      this.calculatePricePerOne({ weight: this.weight, price: this.price });
+    get price() {
+      return this.product.price ? this.product.price : null;
     }
-
-    @Watch('price')
-    onPriceChanged(value: null | number) {
-      this.calculatePricePerOne({ weight: this.weight, price: this.price });
-    }
-
-    clear() {
-      this.weight = null;
-      this.price = null;
+    set price(value) {
+      this.setProductPrice(value);
     }
   }
 </script>

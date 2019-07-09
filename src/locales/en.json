@@ -7,6 +7,6 @@
   "install": "Install",
   "price-per-one": "Price per kilogram/liter",
   "clear": "Clear",
-  "notice-rounded": "The price is rounded to the whole number",
-  "settings": "Settings"
+  "settings": "Settings",
+  "round-setting": "Round to the whole number"
 }

@@ -1,10 +1,13 @@
 <template>
-  <div class="container is-fluid">
+  <div class="container">
     <div class="columns is-centered">
       <div class="main-column column is-narrow">
         <Calculator
+          :product="product"
+          :setProductWeight="setProductWeight"
+          :setProductPrice="setProductPrice"
+          :resetProduct="resetProduct"
           :pricePerOne="pricePerOne"
-          :calculatePricePerOne="calculatePricePerOne"
         />
         <div class="bottom-container">
           <button
@@ -15,12 +18,6 @@
           >
             {{ $t('install') }}
           </button>
-          <div
-            v-show="pricePerOne && Number.isFinite(pricePerOne)"
-            class="notice"
-          >
-            <sup>*</sup>{{ $t('notice-rounded') }}
-          </div>
         </div>
       </div>
     </div>
@@ -38,7 +35,7 @@
   });
 
   import { Component, Vue } from 'vue-property-decorator';
-  import { mapState, mapActions } from 'vuex';
+  import { mapState, mapActions, mapGetters } from 'vuex';
 
   import Calculator from '@/components/Calculator.vue';
 
@@ -48,11 +45,12 @@
     },
 
     computed: {
-      ...mapState(['pricePerOne']),
+      ...mapState(['product']),
+      ...mapGetters(['pricePerOne']),
     },
 
     methods: {
-      ...mapActions(['calculatePricePerOne']),
+      ...mapActions(['setProductWeight', 'setProductPrice', 'resetProduct']),
     },
   })
   export default class Home extends Vue {
@@ -112,12 +110,6 @@
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-  }
-
-  .notice {
-    margin-top: 10px;
-    align-self: flex-start;
-    font-size: 0.75rem;
   }
 </style>
 
