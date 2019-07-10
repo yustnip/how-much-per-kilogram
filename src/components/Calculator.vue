@@ -1,26 +1,26 @@
 <template>
   <div class="calculator">
     <div class="field">
-      <label class="label is-medium">{{ $t('weight') }}</label>
+      <label class="label">{{ $t('weight') }}</label>
       <div class="control">
-        <input v-model="weight" class="input is-medium" type="number" :placeholder="$t('weight-placeholder')">
+        <input v-model="weight" class="input" type="number" :placeholder="$t('weight-placeholder')">
       </div>
     </div>
     <div class="field">
-      <label class="label is-medium">{{ $t('price') }}</label>
+      <label class="label">{{ $t('price') }}</label>
       <div class="control">
-        <input v-model="price" class="input is-medium" type="number" :placeholder="$t('price-placeholder')">
+        <input v-model="price" class="input" type="number" :placeholder="$t('price-placeholder')">
       </div>
     </div>
     <div v-show="pricePerOne" class="price-per-one">
       <div class="price-per-one-text">
-        <span class="price-per-one-title">{{ $t('price-per-one') }}<sup>*</sup></span>
+        <span class="price-per-one-title">{{ $t('price-per-one') }}</span>
         <br>
         <span class="price-per-one-value">{{ pricePerOne }}</span>
       </div>
       <button
         type="button"
-        class="button is-primary is-medium"
+        class="button is-primary"
         @click="resetProduct"
       >
         {{ $t('clear') }}
@@ -57,6 +57,8 @@
 </script>
 
 <style scoped lang="scss">
+  $primary: #357628;
+
   @import 'bulma/sass/utilities/_all.sass';
   @import 'bulma/sass/form/_all.sass';
   @import 'bulma/sass/elements/button.sass';

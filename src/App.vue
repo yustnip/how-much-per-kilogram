@@ -51,6 +51,12 @@
       });
     }
 
+    initWorkerListening() {
+      window.addEventListener('app:updated', () => {
+        window.localStorage.setItem('isAppUpdated', JSON.stringify(true));
+      });
+    }
+
     get isAppUpdated() {
       const rawIsAppUpdated = window.localStorage.getItem('isAppUpdated');
 
@@ -62,6 +68,7 @@
     }
 
     mounted() {
+      this.initWorkerListening();
       this.initMenu();
     }
 
@@ -76,7 +83,12 @@
   @import 'bulma/sass/utilities/_all.sass';
   @import 'bulma/sass/base/_all.sass';
 
-  html, body {
+  html {
+    height: 100%;
+    font-size: 20px;
+  }
+
+  body {
     height: 100%;
   }
 </style>
@@ -91,6 +103,11 @@
 
   .app {
     height: 100%;
+  }
+
+  .navbar-burger span {
+    height: 2px;
+    width: 18px;
   }
 
   .main {
