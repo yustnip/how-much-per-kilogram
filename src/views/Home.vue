@@ -8,6 +8,7 @@
           :setProductPrice="setProductPrice"
           :resetProduct="resetProduct"
           :pricePerOne="pricePerOne"
+          :settings="settings"
         />
         <div class="bottom-container">
           <button
@@ -45,7 +46,7 @@
     },
 
     computed: {
-      ...mapState(['product']),
+      ...mapState(['product', 'settings']),
       ...mapGetters(['pricePerOne']),
     },
 

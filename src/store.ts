@@ -14,6 +14,7 @@ export default new Vuex.Store({
     },
     settings: {
       round: false,
+      validationTimeout: false,
     },
   },
 
@@ -23,7 +24,7 @@ export default new Vuex.Store({
     },
 
     setProductPrice({ product }, payload) {
-      product.price = payload
+      product.price = payload;
     },
 
     resetProduct(state) {
@@ -32,6 +33,10 @@ export default new Vuex.Store({
 
     setRoundSetting({ settings }, payload) {
       settings.round = payload;
+    },
+
+    setValidationTimeout({ settings }, payload) {
+      settings.validationTimeout = payload;
     },
   },
 
@@ -50,6 +55,10 @@ export default new Vuex.Store({
 
     setRoundSetting({ commit }, payload) {
       commit('setRoundSetting', payload);
+    },
+
+    setValidationTimeout({ commit }, payload) {
+      commit('setValidationTimeout', payload);
     },
   },
 

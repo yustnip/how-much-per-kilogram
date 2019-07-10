@@ -49,6 +49,7 @@
 <script lang="ts">
   import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
   import { minValue } from 'vuelidate/lib/validators';
+  import debounce from 'lodash/debounce';
 
   @Component({
     validations: {
@@ -67,19 +68,25 @@
     @Prop() private setProductPrice: (value: number | null) => void;
     @Prop() private resetProduct: () => void;
     @Prop() private pricePerOne: number | null;
+    @Prop() private settings: { round: boolean, validationTimeout: boolean };
+
+    weightTimeout: any = null;
+    priceTimeout: any = null;
+    debouncedSetWeight: (value: number | null) => void = debounce(this.setProductWeight, 1000);
+    debouncedSetPrice: (value: number | null) => void = debounce(this.setProductPrice, 1000);
 
     get weight() {
       return this.product.weight ? this.product.weight : null;
     }
     set weight(value) {
-      this.setProductWeight(value);
+      this.settings.validationTimeout ? this.debouncedSetWeight(value) : this.setProductWeight(value);
     }
 
     get price() {
       return this.product.price ? this.product.price : null;
     }
     set price(value) {
-      this.setProductPrice(value);
+      this.settings.validationTimeout ? this.debouncedSetPrice(value) : this.setProductPrice(value);
     }
   }
 </script>
