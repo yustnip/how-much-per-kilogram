@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === 'production') {
       console.log('New content is downloading.')
     },
     updated () {
-      // const event = new Event('app:updated:0.1.1');
+      // const event = new Event('app:updated');
       // window.dispatchEvent(event);
 
       console.log('New content is available; please refresh.')

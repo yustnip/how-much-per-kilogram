@@ -10,5 +10,6 @@
   "settings": "Settings",
   "round-setting": "Round to the whole number",
   "calculator": "Calculator",
-  "release-notes": "Version: 0.1.1\n- UI improvements\n- Added result round setting"
+  "release-notes": "Version: 0.3.0\n- Validation",
+  "Minimal": "Minimal"
 }

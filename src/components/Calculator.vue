@@ -3,16 +3,33 @@
     <div class="field">
       <label class="label">{{ $t('weight') }}</label>
       <div class="control">
-        <input v-model="weight" class="input" type="number" :placeholder="$t('weight-placeholder')">
+        <input
+          v-model="$v.weight.$model"
+          :placeholder="$t('weight-placeholder')"
+          :class="{ 'is-danger': !$v.weight.minValue }"
+          class="input" type="number"
+        >
+        <p v-if="!$v.weight.minValue" class="help is-danger">
+          {{ $t('Minimal') }}: {{ $v.weight.$params.minValue.min }}
+        </p>
       </div>
     </div>
     <div class="field">
       <label class="label">{{ $t('price') }}</label>
       <div class="control">
-        <input v-model="price" class="input" type="number" :placeholder="$t('price-placeholder')">
+        <input
+          v-model="price"
+          :placeholder="$t('price-placeholder')"
+          :class="{ 'is-danger': !$v.price.minValue }"
+          class="input"
+          type="number"
+        >
+        <p v-if="!$v.price.minValue" class="help is-danger">
+          {{ $t('Minimal') }}: {{ $v.price.$params.minValue.min }}
+        </p>
       </div>
     </div>
-    <div v-show="pricePerOne" class="price-per-one">
+    <div v-show="pricePerOne && !this.$v.$invalid" class="price-per-one">
       <div class="price-per-one-text">
         <span class="price-per-one-title">{{ $t('price-per-one') }}</span>
         <br>
@@ -31,8 +48,19 @@
 
 <script lang="ts">
   import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+  import { minValue } from 'vuelidate/lib/validators';
 
-  @Component
+  @Component({
+    validations: {
+      weight: {
+        minValue: minValue(0.01),
+      },
+
+      price: {
+        minValue: minValue(1),
+      },
+    },
+  })
   export default class Calculator extends Vue {
     @Prop() private product: { weight: number | null, price: number | null };
     @Prop() private setProductWeight: (value: number | null ) => void;
