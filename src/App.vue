@@ -19,7 +19,7 @@
     <div class="main">
       <div v-if="isAppUpdated && !isNotificationClosed" class="notification">
         <button class="delete" @click="closeNotification"></button>
-        {{ $t('release-notes') }}
+        <div>{{ $t('release-notes') }}</div>
       </div>
       <router-view/>
     </div>

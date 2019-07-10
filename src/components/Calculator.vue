@@ -73,7 +73,6 @@
     weightTimeout: any = null;
     priceTimeout: any = null;
     debouncedSetWeight: (value: number | null) => void = debounce(this.setProductWeight, 1000);
-    debouncedSetPrice: (value: number | null) => void = debounce(this.setProductPrice, 1000);
 
     get weight() {
       return this.product.weight ? this.product.weight : null;
@@ -86,7 +85,7 @@
       return this.product.price ? this.product.price : null;
     }
     set price(value) {
-      this.settings.validationTimeout ? this.debouncedSetPrice(value) : this.setProductPrice(value);
+      this.setProductPrice(value);
     }
   }
 </script>

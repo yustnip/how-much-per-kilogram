@@ -11,7 +11,7 @@
         <div class="field">
           <label class="checkbox">
             <input v-model="validationTimeout" type="checkbox">
-            {{ $t('Timeout before the values check') }}
+            {{ $t('Timeout before the weight/volume field check') }}
           </label>
         </div>
       </div>

@@ -10,7 +10,7 @@
   "settings": "Settings",
   "round-setting": "Round to the whole number",
   "calculator": "Calculator",
-  "release-notes": "Version: 0.3.0\n- Setting the timeout before the values check",
+  "release-notes": "Version: 0.3.1\n- Setting the timeout before the weight/volume check",
   "Minimal": "Minimal",
-  "Timeout before the values check": "Timeout before the values check"
+  "Timeout before the weight/volume field check": "Timeout before the weight/volume field check"
 }
