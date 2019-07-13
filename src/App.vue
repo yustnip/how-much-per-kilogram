@@ -112,7 +112,7 @@
 
   .main {
     padding: 20px;
-    height: calc(100% - 52px);
+    height: calc(100% - 65px);
   }
 
   .notification {
