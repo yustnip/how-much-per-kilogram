@@ -17,10 +17,6 @@
       </div>
     </div>
     <div class="main">
-      <div v-if="isAppUpdated && !isNotificationClosed" class="notification">
-        <button class="delete" @click="closeNotification"></button>
-        <div>{{ $t('release-notes') }}</div>
-      </div>
       <router-view/>
     </div>
   </div>
@@ -31,7 +27,9 @@
 
   @Component
   export default class Calculator extends Vue {
-    isNotificationClosed: boolean = false;
+    mounted() {
+      this.initMenu();
+    }
 
     initMenu() {
       document.addEventListener('DOMContentLoaded', () => {
@@ -49,31 +47,6 @@
           });
         }
       });
-    }
-
-    initWorkerListening() {
-      window.addEventListener('app:updated', () => {
-        window.localStorage.setItem('isAppUpdated', JSON.stringify(true));
-      });
-    }
-
-    get isAppUpdated() {
-      const rawIsAppUpdated = window.localStorage.getItem('isAppUpdated');
-
-      if (!rawIsAppUpdated) return false;
-
-      const isAppUpdated = JSON.parse(rawIsAppUpdated);
-      window.localStorage.removeItem('isAppUpdated');
-      return isAppUpdated;
-    }
-
-    mounted() {
-      this.initWorkerListening();
-      this.initMenu();
-    }
-
-    closeNotification() {
-      this.isNotificationClosed = true;
     }
   }
 </script>
@@ -98,8 +71,6 @@
 
   @import 'bulma/sass/utilities/_all.sass';
   @import 'bulma/sass/components/navbar.sass';
-  @import 'bulma/sass/elements/notification.sass';
-  @import 'bulma/sass/elements/other.sass';
 
   .app {
     height: 100%;
@@ -113,9 +84,5 @@
   .main {
     padding: 20px;
     height: calc(100% - 65px);
-  }
-
-  .notification {
-    white-space: pre-line;
   }
 </style>

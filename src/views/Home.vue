@@ -2,6 +2,10 @@
   <div class="container">
     <div class="columns is-centered">
       <div class="main-column column is-narrow">
+        <div v-if="isAppUpdated && !isNotificationClosed" class="notification">
+          <button class="delete" @click="closeNotification"></button>
+          <div>{{ $t('release-notes') }}</div>
+        </div>
         <Calculator
           :product="product"
           :setProductWeight="setProductWeight"
@@ -56,11 +60,14 @@
   })
   export default class Home extends Vue {
     isInstalled: boolean = true;
+    isNotificationClosed: boolean = false;
 
     mounted() {
       if (!window.matchMedia('(display-mode: standalone)').matches) {
         this.isInstalled = false;
       }
+
+      this.initWorkerListening();
     }
 
     showInstallPrompt() {
@@ -80,6 +87,26 @@
           deferredPrompt = null;
         });
     }
+
+    initWorkerListening() {
+      window.addEventListener('app:updated', () => {
+        window.localStorage.setItem('isAppUpdated', JSON.stringify(true));
+      });
+    }
+
+    get isAppUpdated() {
+      const rawIsAppUpdated = window.localStorage.getItem('isAppUpdated');
+
+      if (!rawIsAppUpdated) return false;
+
+      const isAppUpdated = JSON.parse(rawIsAppUpdated);
+      window.localStorage.removeItem('isAppUpdated');
+      return isAppUpdated;
+    }
+
+    closeNotification() {
+      this.isNotificationClosed = true;
+    }
   }
 </script>
 
@@ -89,6 +116,8 @@
   @import 'bulma/sass/grid/columns.sass';
   @import 'bulma/sass/elements/title.sass';
   @import 'bulma/sass/elements/button.sass';
+  @import 'bulma/sass/elements/notification.sass';
+  @import 'bulma/sass/elements/other.sass';
 
   .container {
     height: 100%;
@@ -111,6 +140,10 @@
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
+  }
+
+  .notification {
+    white-space: pre-line;
   }
 </style>
 

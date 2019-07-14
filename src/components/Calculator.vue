@@ -70,8 +70,6 @@
     @Prop() private pricePerOne: number | null;
     @Prop() private settings: { round: boolean, validationTimeout: boolean };
 
-    weightTimeout: any = null;
-    priceTimeout: any = null;
     debouncedSetWeight: (value: number | null) => void = debounce(this.setProductWeight, 1000);
 
     get weight() {
