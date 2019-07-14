@@ -17,7 +17,7 @@
         <div class="bottom-container">
           <button
             v-if="!isInstalled"
-            class="button"
+            class="button install-button"
             type="button"
             @click="showInstallPrompt"
           >
@@ -144,6 +144,16 @@
 
   .notification {
     white-space: pre-line;
+  }
+
+  .install-button {
+    display: none;
+  }
+
+  @media (min-width: 1024px) {
+    .install-button {
+      display: inline-block;
+    }
   }
 </style>
 
