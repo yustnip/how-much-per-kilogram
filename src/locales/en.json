@@ -10,7 +10,7 @@
   "settings": "Settings",
   "round-setting": "Round to the whole number",
   "calculator": "Calculator",
-  "release-notes": "Version: 0.3.3\n- UI fixes",
+  "release-notes": "Version: 0.3.4\n- Hidden install button on mobile",
   "Minimal": "Minimal",
   "Timeout before the weight/volume field check": "Timeout before the weight/volume field check"
 }
