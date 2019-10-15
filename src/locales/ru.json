@@ -10,7 +10,7 @@
     "settings": "Настройки",
     "round-setting": "Округлять до целого числа",
     "calculator": "Калькулятор",
-    "release-notes": "Версия: 0.3.4\n- Спрятана кнопка установки на мобильных",
+    "release-notes": "Версия: 0.4.0\n- Числовая клавиатура для iOS",
     "Minimal": "Минимально",
     "Timeout before the weight/volume field check": "Задержка перед проверкой поля веса/объёма"
   }
