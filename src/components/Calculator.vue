@@ -7,7 +7,10 @@
           v-model="$v.weight.$model"
           :placeholder="$t('weight-placeholder')"
           :class="{ 'is-danger': !$v.weight.minValue }"
-          class="input" type="number"
+          class="input" 
+          type="number"
+          pattern="[0-9]*"
+          inputmode="decimal"
         >
         <p v-if="!$v.weight.minValue" class="help is-danger">
           {{ $t('Minimal') }}: {{ $v.weight.$params.minValue.min }}
@@ -23,6 +26,8 @@
           :class="{ 'is-danger': !$v.price.minValue }"
           class="input"
           type="number"
+          pattern="[0-9]*"
+          inputmode="decimal"
         >
         <p v-if="!$v.price.minValue" class="help is-danger">
           {{ $t('Minimal') }}: {{ $v.price.$params.minValue.min }}
